@@ -1,0 +1,34 @@
+﻿@using System.Web.Mvc.Html
+@model Casando.Web.ViewModels.Convidado.CadastrarConvidadoVM
+
+@{
+    ViewBag.Title = "Cadastrar Convidado";
+}
+<br/>
+<h4>Informe os Dados do seu Convidado</h4><hr/>
+
+@using (Html.BeginForm("Cadastrar", "Convidados", FormMethod.Post, new { role = "form" }))
+{
+    <div class="form-group">
+        <label>Categoria</label>
+        @Html.DropDownListFor(m => m.TipoConvidado, Model.TiposConvidado, "Selecione", new { @class = "form-control" })
+    </div>
+    
+    <div class="form-group">
+        <label>Nome Completo</label>
+        @Html.TextBoxFor(m => m.Nome, new { @class = "form-control"})
+    </div>
+    
+    <div class="form-group">
+        <label>Endereço</label>
+        @Html.TextBoxFor(m => m.Endereco, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Número de Exibíveis</label>
+        @Html.DropDownListFor(m => m.NumeroConvites, Model.NumeroDeExibiveis, "Selecione", new { @class = "form-control", style = "width:120px" })
+    </div>
+
+    <button type="submit" class="btn btn-info">Cadastrar</button>
+}
+

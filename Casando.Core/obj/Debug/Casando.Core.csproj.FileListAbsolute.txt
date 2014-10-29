@@ -1,0 +1,5 @@
+c:\users\pedro.benevides\documents\visual studio 2013\Projects\Casando\Casando.Core\bin\Debug\Casando.Core.dll
+c:\users\pedro.benevides\documents\visual studio 2013\Projects\Casando\Casando.Core\bin\Debug\Casando.Core.pdb
+c:\users\pedro.benevides\documents\visual studio 2013\Projects\Casando\Casando.Core\obj\Debug\Casando.Core.csprojResolveAssemblyReference.cache
+c:\users\pedro.benevides\documents\visual studio 2013\Projects\Casando\Casando.Core\obj\Debug\Casando.Core.dll
+c:\users\pedro.benevides\documents\visual studio 2013\Projects\Casando\Casando.Core\obj\Debug\Casando.Core.pdb

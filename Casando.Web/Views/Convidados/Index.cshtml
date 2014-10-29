@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Casando.Core.Modelos.Convidado>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Convidados</h2>
+    <ul class="nav nav-tabs" role="tablist" id="myTab">
+        <li class="active"><a href="#home" role="tab" data-toggle="tab">Familia do Noivo</a></li>
+        <li><a href="#profile" role="tab" data-toggle="tab">Familia da Noiva</a></li>
+        <li><a href="#messages" role="tab" data-toggle="tab">Amigos do Noivo</a></li>
+        <li><a href="#settings" role="tab" data-toggle="tab">Amigas da Noiva</a></li>
+    </ul>
+
+<div class="tab-content">
+    <div class="tab-pane active" id="home">
+        @Html.Partial("_TabelaConvidados")
+    </div>
+    <div class="tab-pane" id="profile">...</div>
+    <div class="tab-pane" id="messages">...</div>
+    <div class="tab-pane" id="settings">...</div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#myTab a').click(function(e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
+    });
+</script>
+
+
