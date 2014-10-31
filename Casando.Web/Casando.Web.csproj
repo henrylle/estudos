@@ -146,6 +146,7 @@
     <Content Include="Views\Convidados\Index.cshtml" />
     <Content Include="Views\Convidados\Cadastrar.cshtml" />
     <Content Include="Views\Shared\_TabelaConvidados.cshtml" />
+    <Content Include="Views\Convidados\Resumo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

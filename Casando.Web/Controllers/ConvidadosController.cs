@@ -44,5 +44,11 @@ namespace Casando.Web.Controllers
             return RedirectToAction("Index","Convidados");
         }
 
+        [HttpGet]
+        public ActionResult Resumo()
+        {
+            return View(convidadosRepositorio.Totais());
+        }
+
     }
 }

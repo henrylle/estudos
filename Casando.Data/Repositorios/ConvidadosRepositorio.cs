@@ -16,5 +16,12 @@ namespace Casando.Data.Repositorios
         {
             this.unitOfWork = unitOfWork;
         }
+
+        public IDictionary<string, int> Totais()
+        {
+            return unitOfWork.Context.Convidados
+                        .GroupBy(c => c.TipoConvidado)
+                        .ToDictionary(c => c.Key.ToString(), c => c.Count());
+        }
     }
 }
