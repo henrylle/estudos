@@ -17,17 +17,17 @@ namespace Casando.Web.Mappers
 
         private static object Sobrenome(CadastrarConvidadoVM model)
         {
-            var nomeSobrenome = model.Nome.Split(' ');
+            var partesNome = model.Nome.Split(' ');
             var sobreNome = string.Empty;
 
-            foreach (var sn in nomeSobrenome)
+            if (partesNome.Length % 2 == 0)
             {
-                if(nomeSobrenome.First().Equals(sn)) continue;
-
-                sobreNome = string.Format("{0} {1}", sobreNome, sn);
+                return string.Join(" ", partesNome.Skip(partesNome.Length / 2));
             }
-
-            return sobreNome;
+            else
+            {
+                return string.Join(" ", partesNome.Skip(1));
+            }
         }
     }
 }
