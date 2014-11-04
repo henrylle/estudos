@@ -1,43 +1,36 @@
-﻿(function () {
+﻿var convidadoViewModel = (function ConvidadoViewModel() {
 
-    $(function () {
-        //debugger;
-        ko.applyBindings(ConvidadosListVM);
-        ConvidadosListVM.getConvidados();
-    });
+    var self = this;
 
-    var ConvidadoVM = {
-        Nome: ko.observable(),
-        Sobrenome: ko.observable(),
-        Endereco: ko.observable(),
-        Exibiveis: ko.observable()
-    };
+    self.Convidados = ko.observableArray([]);
 
-    var ConvidadosListVM = {
-        Convidados: ko.observableArray([]),
-        getConvidados: function () {
-            
-            $.ajax({
-                url: '/Convidados/Teste',
-                type: 'GET',
-                dataType: 'json',
-                contentType: 'application/json',
-                success: function (data) {
-                    debugger;
-                    Convidados(data);
-                },
-                error: function(err) {
+    this.preencheTable = function () {
+        $.ajax({
+            url: '/Convidados/Teste',
+            type: 'GET',
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (data) {
+                data.map(function (convidado) {
+                    //debugger;
+                    self.Convidados.push(new Convidado(convidado));
+                });
+            },
+            error: function (err) { }
+        });
+    }
 
-                }
-            });
-        }
-    };
-
-    function Convidados(data) {
+    /*Declaração do Objeto*/
+    function Convidado(data) {
         this.Nome = ko.observable(data.Nome);
         this.Sobrenome = ko.observable(data.Sobrenome);
         this.Endereco = ko.observable(data.Endereco);
-        this.Exibiveis = ko.observable(data.Exibiveis);
+        this.Exibiveis = ko.observable(data.NumeroConvites);
     };
+});
 
-})();
+$(function () {
+    var viewModel = new convidadoViewModel();
+    ko.applyBindings(viewModel, $(".table")[0]);
+    viewModel.preencheTable();
+});
