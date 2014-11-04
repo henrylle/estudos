@@ -25,5 +25,6 @@ namespace Casando.Data
         public DbSet<Presente> Presentes { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Perfil> Perfis { get; set; }
+        public DbSet<CotacaoPresente> CotacaoPresentes { get; set; }
     }
 }

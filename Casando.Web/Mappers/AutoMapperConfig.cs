@@ -11,6 +11,7 @@ namespace Casando.Web.Mappers
         public static void RegisterMappings()
         {
             Mapper.Initialize(m => m.AddProfile<ConvidadoProfile>());
+            Mapper.Initialize(m => m.AddProfile<PresenteProfile>());
         }
     }
 }

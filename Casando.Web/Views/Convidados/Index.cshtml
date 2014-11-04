@@ -4,6 +4,9 @@
 }
 
 <h2>Convidados</h2>
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Cadastrar Convidado
+</button>
     <ul class="nav nav-tabs" role="tablist" id="myTab">
         <li class="active"><a href="#home" role="tab" data-toggle="tab">Familia do Noivo</a></li>
         <li><a href="#profile" role="tab" data-toggle="tab">Familia da Noiva</a></li>
@@ -20,13 +23,45 @@
     <div class="tab-pane" id="settings">...</div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-2.1.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/knockout-2.0.0.js"></script>
+<script src="~/Scripts/knockout.mapping-latest.js"></script>
+
 <script>
     $(document).ready(function() {
         $('#myTab a').click(function(e) {
             e.preventDefault();
             $(this).tab('show');
         });
+
+        $.getJSON("/Convidados/Teste", function (data) {
+            var viewModel = {
+                convidadosDB: ko.observableArray(data)
+            };
+        });
+
     });
+
 </script>
 
 

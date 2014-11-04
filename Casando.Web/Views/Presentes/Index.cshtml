@@ -1,0 +1,38 @@
+﻿@model Dictionary<string, IEnumerable<Casando.Core.Modelos.CotacaoPresente>>
+
+<h3>Presentes</h3>
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td></td>
+                <td>Nome</td>
+                <td>Cotacao</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model)
+            {
+                if(!p.Value.Any()){ continue; }
+                var count = p.Value.Count();
+                
+                <tr>
+                    <td rowspan="@count"><a class="btn-info" href="@Url.Action("Editar", "Presentes")">Editar</a></td>
+                    <td rowspan="@count">@p.Key</td>
+                    <td>@string.Format("Site: {0} - Preço R$: {1}", 
+                        p.Value.FirstOrDefault().SiteNome, p.Value.FirstOrDefault().Valor)</td>
+                </tr>
+                if (count > 1)
+                {
+                    foreach (var cot in p.Value.Skip(1))
+                    {
+                        <tr>
+                            <td>@string.Format("Site: {0} - Preço R$: {1}", cot.SiteNome, cot.Valor) <a href="@cot.Url">Ver |</a> <a href="@cot.Url">Excluir</a></td>
+                        </tr>
+                    }
+                }
+            }
+
+        </tbody>
+    </table>
+</div>

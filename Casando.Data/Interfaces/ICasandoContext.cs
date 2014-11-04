@@ -12,5 +12,8 @@ namespace Casando.Data.Interfaces
     {
         DbSet<Convidado> Convidados { get; set; }
         DbSet<Presente> Presentes { get; set; }
+        DbSet<Usuario> Usuarios { get; set; }
+        DbSet<Perfil> Perfis { get; set; }
+        DbSet<CotacaoPresente> CotacaoPresentes { get; set; }
     }
 }

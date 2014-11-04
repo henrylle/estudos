@@ -126,20 +126,28 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
+    <Content Include="Scripts\knockout-2.0.0.debug.js" />
+    <Content Include="Scripts\knockout-2.0.0.js" />
+    <Content Include="Scripts\knockout.mapping-latest.debug.js" />
+    <Content Include="Scripts\knockout.mapping-latest.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\ViewModels\ConvidadoViewModel.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ConvidadosController.cs" />
+    <Compile Include="Controllers\PresentesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Mappers\AutoMapperConfig.cs" />
     <Compile Include="Mappers\ConvidadoProfile.cs" />
+    <Compile Include="Mappers\PresenteProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Convidado\CadastrarConvidadoVM.cs" />
+    <Compile Include="ViewModels\Presente\CadastrarPresenteVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -151,6 +159,9 @@
     <Content Include="Views\Convidados\Cadastrar.cshtml" />
     <Content Include="Views\Shared\_TabelaConvidados.cshtml" />
     <Content Include="Views\Convidados\Resumo.cshtml" />
+    <Content Include="Views\Presentes\Cadastrar.cshtml" />
+    <Content Include="Views\Presentes\Index.cshtml" />
+    <Content Include="Views\Convidados\Knockout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

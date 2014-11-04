@@ -5,5 +5,7 @@
         public string SiteNome { get; set; }
         public string Url { get; set; }
         public decimal Valor { get; set; }
+
+        public virtual Presente Presente{ get; set; }
     }
 }

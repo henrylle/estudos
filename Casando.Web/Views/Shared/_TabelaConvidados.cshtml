@@ -1,50 +1,27 @@
 ﻿@model IEnumerable<Casando.Core.Modelos.Convidado>
            
-<div class="container">
-    <div class="heading">
-        <div class="col">Nome</div>
-        <div class="col">Endereço </div>
-        <div class="col">Número de Exibíveis</div>
-    </div>
-    @foreach (var c in Model)
-    {
-        <div class="table-row">
-            <div class="col">@string.Format("{0} {1}", c.Nome, c.Sobrenome)</div>
-            <div class="col">@c.Endereco</div>
-            <div class="col">@c.NumeroConvites</div>
-        </div>
-    }
-
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>Nome</td>
+                <td>Endereço</td>
+                <td>Quantidade de Exibíveis</td>
+            </tr>
+        </thead>
+        <tbody>
+            
+            @foreach (var convidado in Model)
+            {
+                <tr>
+                    <td>@convidado.Nome</td>
+                    <td>@convidado.Endereco</td>
+                    <td>@convidado.NumeroConvites</td>
+                </tr>
+            }
+            
+        </tbody>
+    </table>
 </div>
-
-
-<style>
-    .container {
-        display: table;
-        width: 90%;
-        border-collapse: collapse;
-    }
-
-    .heading {
-        font-weight: bold;
-        display: table-row;
-        background-color: #C91622;
-        text-align: center;
-        line-height: 25px;
-        font-size: 14px;
-        font-family: georgia;
-        color: #fff;
-    }
-
-    .table-row {
-        display: table-row;
-        text-align: center;
-    }
-
-    .col {
-        display: table-cell;
-        border: 1px solid #CCC;
-    }
-</style>
 
 

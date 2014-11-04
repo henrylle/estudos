@@ -68,6 +68,8 @@ namespace Casando.Web.App_Start
         {
             kernel.Bind<IUnitOfWork<CasandoContext>>().To<UnitOfWork>();
             kernel.Bind<IConvidadosRepositorio>().To<ConvidadosRepositorio>();
+            kernel.Bind<IPresentesRepositorio>().To<PresentesRepositorio>();
+            kernel.Bind<ICotacaoPresenteRepositorio>().To<CotacaoPresenteRepositorio>();
         }        
     }
 }

@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Convidados</h2>
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Cadastrar Convidado
+</button>
+<ul class="nav nav-tabs" role="tablist" id="myTab">
+    <li class="active"><a href="#home" role="tab" data-toggle="tab">Familia do Noivo</a></li>
+    <li><a href="#profile" role="tab" data-toggle="tab">Familia da Noiva</a></li>
+    <li><a href="#messages" role="tab" data-toggle="tab">Amigos do Noivo</a></li>
+    <li><a href="#settings" role="tab" data-toggle="tab">Amigas da Noiva</a></li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane active" id="home">
+        <div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>Nome</td>
+                        <td>Endereço</td>
+                        <td>Quantidade de Exibíveis</td>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: ConvidadosList">
+                    <tr>
+                        <td data-bind="text: ConvidadoViewModel.Nome"></td>
+                        <td data-bind="text: ConvidadoViewModel.Endereco"></td>
+                        <td data-bind="text: ConvidadoViewModel.Exibiveis"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="tab-pane" id="profile">...</div>
+    <div class="tab-pane" id="messages">...</div>
+    <div class="tab-pane" id="settings">...</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-2.1.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/knockout-2.0.0.js"></script>
+<script src="~/Scripts/knockout.mapping-latest.js"></script>
+@*<script src="~/Scripts/ViewModels/ConvidadoViewModel.js"></script>*@
+
+<script>
+    (function ConvidadoViewModel() {
+
+        var self = this;
+        
+        self.Nome = ko.observable("");
+        self.Sobrenome = ko.observable("");
+        self.Endereco = ko.observable("");
+        self.Exibiveis = ko.observable("");
+
+        var Convidado = {
+            Nome: self.Nome,
+            Sobrenome: self.Sobrenome,
+            Endereco: self.Endereco,
+            Exibiveis: self.Exibiveis
+        };
+
+        self.Convidado = ko.observable();
+        self.ConvidadosList = ko.observableArray();
+
+        $.ajax({
+            url: '/Convidados/Teste',
+            type: 'GET',
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (data) {
+                debugger;
+                self.ConvidadosList(data);
+            },
+            error: function(err) { }
+        });
+
+        $(document).ready(function () {
+            var viewModel = new ConvidadoViewModel();
+            ko.applyBindings(viewModel);
+        });
+    });
+   
+</script>
+

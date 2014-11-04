@@ -41,6 +41,8 @@
   <ItemGroup>
     <Compile Include="Enums\TipoConvidado.cs" />
     <Compile Include="Interfaces\IConvidadosRepositorio.cs" />
+    <Compile Include="Interfaces\ICotacaoPresenteRepositorio.cs" />
+    <Compile Include="Interfaces\IPresentesRepositorio.cs" />
     <Compile Include="Interfaces\IRepositorio.cs" />
     <Compile Include="Modelos\Convidado.cs" />
     <Compile Include="Modelos\CotacaoPresente.cs" />

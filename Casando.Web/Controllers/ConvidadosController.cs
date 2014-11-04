@@ -50,5 +50,16 @@ namespace Casando.Web.Controllers
             return View(convidadosRepositorio.Totais());
         }
 
+        [HttpGet]
+        public JsonResult Teste()
+        {
+            return Json(convidadosRepositorio.Todos(), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Knockout()
+        {
+            return View();
+        }
+
     }
 }
