@@ -56,6 +56,13 @@ namespace Casando.Web.Controllers
             return Json(convidadosRepositorio.Todos(), JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public ActionResult SalvaTeste(Convidado obj)
+        {
+            return HttpNotFound();
+        }
+
+
         public ActionResult Knockout()
         {
             return View();

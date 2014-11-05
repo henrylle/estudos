@@ -1,10 +1,13 @@
 ﻿var convidadoViewModel = (function ConvidadoViewModel() {
 
     var self = this;
+    var tiposConvidado = ko.observableArray(['Familiar do Noivo', 'Familiar da Noiva', 'Amigo do Noivo', 'Amigo da Noiva']);
 
     self.Convidados = ko.observableArray([]);
+    self.novoConvidado = ko.observable();
 
     this.preencheTable = function () {
+        self.Convidados([]);
         $.ajax({
             url: '/Convidados/Teste',
             type: 'GET',
@@ -12,12 +15,35 @@
             contentType: 'application/json',
             success: function (data) {
                 data.map(function (convidado) {
-                    //debugger;
+                    
                     self.Convidados.push(new Convidado(convidado));
                 });
             },
             error: function (err) { }
         });
+    }
+
+    this.adicionar = function (dado) {
+        
+        var convidadoNovo = ko.toJSON(dado);
+        $.ajax({
+            url: '/Convidados/SalvaTeste',
+            type: 'POST',
+            dataType: 'json',
+            data: convidadoNovo,
+            contentType: 'application/json',
+            success: function(data) {
+                self.preencheTable();
+            }
+        });
+    }
+
+    this.preparaConvidado = function() {
+        self.novoConvidado(new Convidado({}));
+    }
+
+    this.tiposDeConvidados = function() {
+        return tiposConvidado;
     }
 
     /*Declaração do Objeto*/
@@ -26,11 +52,14 @@
         this.Sobrenome = ko.observable(data.Sobrenome);
         this.Endereco = ko.observable(data.Endereco);
         this.Exibiveis = ko.observable(data.NumeroConvites);
+        this.TipoConvidado = ko.observable(data.TipoConvidado);
     };
 });
 
 $(function () {
     var viewModel = new convidadoViewModel();
-    ko.applyBindings(viewModel, $(".table")[0]);
+    
+    ko.applyBindings(viewModel, $(".convidados")[0]);
     viewModel.preencheTable();
+    viewModel.preparaConvidado();
 });
