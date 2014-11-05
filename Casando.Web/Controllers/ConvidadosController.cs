@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
@@ -57,9 +58,17 @@ namespace Casando.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult SalvaTeste(Convidado obj)
+        public ActionResult SalvaTeste(Convidado convidado)
         {
-            return HttpNotFound();
+            try
+            {
+                convidadosRepositorio.Inclui(convidado);
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            catch (Exception)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, "Não foi possível cadastrar o Convidado.");
+            }
         }
 
 

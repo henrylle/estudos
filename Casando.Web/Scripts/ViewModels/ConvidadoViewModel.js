@@ -24,16 +24,18 @@
     }
 
     this.adicionar = function (dado) {
-        
-        var convidadoNovo = ko.toJSON(dado);
+         
         $.ajax({
             url: '/Convidados/SalvaTeste',
             type: 'POST',
             dataType: 'json',
-            data: convidadoNovo,
+            data: ko.toJSON(dado),
             contentType: 'application/json',
-            success: function(data) {
-                self.preencheTable();
+            accept: 'application/json',
+            statusCode: {
+                200: function () {
+                    self.preencheTable();
+                }
             }
         });
     }
@@ -51,7 +53,7 @@
         this.Nome = ko.observable(data.Nome);
         this.Sobrenome = ko.observable(data.Sobrenome);
         this.Endereco = ko.observable(data.Endereco);
-        this.Exibiveis = ko.observable(data.NumeroConvites);
+        this.NumeroConvites = ko.observable(data.NumeroConvites);
         this.TipoConvidado = ko.observable(data.TipoConvidado);
     };
 });
