@@ -23,5 +23,10 @@ namespace Casando.Data.Repositorios
                         .GroupBy(c => c.TipoConvidado)
                         .ToDictionary(c => c.Key.ToString(), c => c.Count());
         }
+        
+        public IQueryable<Convidado> TodosPorTipo(Core.Enums.TipoConvidado tipo)
+        {
+            return unitOfWork.Context.Convidados.Where(c => c.TipoConvidado == tipo);
+        }
     }
 }

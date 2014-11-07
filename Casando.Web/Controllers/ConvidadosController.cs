@@ -6,6 +6,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using Casando.Core.Enums;
 using Casando.Core.Interfaces;
 using Casando.Core.Modelos;
 using Casando.Data;
@@ -25,8 +26,7 @@ namespace Casando.Web.Controllers
         // GET: Convidados
         public ActionResult Index()
         {
-            var convidados = convidadosRepositorio.Todos();
-            return View(convidados);
+            return View();
         }
 
         [HttpGet]
@@ -48,17 +48,15 @@ namespace Casando.Web.Controllers
         [HttpGet]
         public ActionResult Resumo()
         {
-            return View(convidadosRepositorio.Totais());
-        }
-
-        [HttpGet]
-        public JsonResult Teste()
-        {
-            return Json(convidadosRepositorio.Todos(), JsonRequestBehavior.AllowGet);
+            var resumoConvitesVM = new ResumoConvitesVM
+            {
+                Resumo = convidadosRepositorio.Totais()
+            };
+            return View(resumoConvitesVM);
         }
 
         [HttpPost]
-        public ActionResult SalvaTeste(Convidado convidado)
+        public ActionResult Salvar(Convidado convidado)
         {
             try
             {
@@ -71,10 +69,23 @@ namespace Casando.Web.Controllers
             }
         }
 
-
-        public ActionResult Knockout()
+        public ActionResult PorCategoria(string obj)
         {
-            return View();
+            var tipo = getTipoConvidado(obj);
+            var todosPorTipo = convidadosRepositorio.TodosPorTipo(tipo);
+
+            return Json(convidadosRepositorio.TodosPorTipo(tipo), JsonRequestBehavior.AllowGet);
+        }
+
+        private TipoConvidado getTipoConvidado(string tipo)
+        {
+            if(tipo.Equals("0")) return TipoConvidado.FamiliarNoiva;
+            
+            if(tipo.Equals("1")) return TipoConvidado.FamiliarNoivo;
+            
+            if(tipo.Equals("2")) return TipoConvidado.AmigosNoiva;
+
+            return TipoConvidado.AmigosNoivo;
         }
 
     }

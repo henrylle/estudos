@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using Casando.Core.Modelos;
 using Casando.Web.ViewModels.Convidado;
@@ -11,6 +12,9 @@ namespace Casando.Web.Mappers
         {
             Mapper.CreateMap<CadastrarConvidadoVM, Convidado>()
                 .ForMember(vm => vm.Sobrenome, expression => expression.ResolveUsing(Sobrenome));
+
+            Mapper.CreateMap<IDictionary<string, int>, ResumoConvitesVM>()
+                .ForMember(c => c.Resumo, expression => expression.UseValue(this));
 
             base.Configure();
         }

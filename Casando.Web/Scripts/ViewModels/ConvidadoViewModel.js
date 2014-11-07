@@ -5,53 +5,49 @@
     self.Convidados = ko.observableArray([]);
     self.novoConvidado = ko.observable();
 
-    this.preencheTable = function () {
+    this.preencheTable = function(categoria) {
         self.Convidados([]);
         $.ajax({
-            url: '/Convidados/Teste',
+            url: '/Convidados/PorCategoria?obj=' + categoria,
             type: 'GET',
             dataType: 'json',
             contentType: 'application/json',
-            success: function (data) {
-                data.map(function (convidado) {
-                    
-                    self.Convidados.push(new Convidado(convidado));
-                });
-            },
-            error: function (err) { }
-        });
-    }
+            accept: 'application/json',
+            statusCode: {
+                200: function (data) {
 
-    this.adicionar = function (dado) {
-         
+                    data.map(function (convidado) {
+                        self.Convidados.push(new Convidado(convidado));
+                    });
+                }
+            }
+        });
+    };
+
+    this.adicionar = function(dado) {
+        
         $.ajax({
-            url: '/Convidados/SalvaTeste',
+            url: '/Convidados/Salvar',
             type: 'POST',
             dataType: 'json',
             data: ko.toJSON(dado),
             contentType: 'application/json',
             accept: 'application/json',
             statusCode: {
-                200: function () {
-                    self.preencheTable();
+                200: function() {
+                    self.preencheTable(dado.TipoConvidado());
                 }
             }
         });
-    }
-
-    this.limpaTabela = function() {
-        self.Convidados = ko.observableArray([]);
-        var element = $('#profile')[0];
-        ko.cleanNode(element);
-    }
+    };
 
     this.preparaConvidado = function() {
         self.novoConvidado(new Convidado({}));
-    }
+    };
 
     this.tiposDeConvidados = function() {
         return tiposConvidado;
-    }
+    };
 
     /*Declaração do Objeto*/
     function Convidado(data) {
@@ -67,7 +63,7 @@ $(function () {
     var viewModel = new convidadoViewModel();
     
     ko.applyBindings(viewModel, $(".convidados")[0]);
-    viewModel.preencheTable();
+    viewModel.preencheTable('1');
     viewModel.preparaConvidado();
     
 });

@@ -1,67 +1,79 @@
-﻿@model IEnumerable<Casando.Core.Modelos.Convidado>
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
-
 <h2>Convidados</h2>
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="margin-bottom: 40px; margin-top: 20px">
     Cadastrar Convidado
 </button>
+<div class="convidados">
     <ul class="nav nav-tabs" role="tablist" id="myTab">
-        <li class="active"><a href="#home" role="tab" data-toggle="tab">Familia do Noivo</a></li>
-        <li><a href="#profile" role="tab" data-toggle="tab">Familia da Noiva</a></li>
-        <li><a href="#messages" role="tab" data-toggle="tab">Amigos do Noivo</a></li>
-        <li><a href="#settings" role="tab" data-toggle="tab">Amigas da Noiva</a></li>
+        <li id="familia-noivo" data-bind="click: function(){ $root.preencheTable('1') }" class="active"><a href="#home" role="tab" data-toggle="tab">Familia do Noivo</a></li>
+        <li id="familia-noiva" data-bind="click: function(){ $root.preencheTable('0') }"><a href="#profile" role="tab" data-toggle="tab">Familia da Noiva</a></li>
+        <li id="amigos-noivo" data-bind="click: function(){ $root.preencheTable('3') }"><a href="#messages" role="tab" data-toggle="tab">Amigos do Noivo</a></li>
+        <li id="amigos-noiva" data-bind="click: function(){ $root.preencheTable('2') }"><a href="#settings" role="tab" data-toggle="tab">Amigos da Noiva</a></li>
     </ul>
 
-<div class="tab-content">
-    <div class="tab-pane active" id="home">
-        @Html.Partial("_TabelaConvidados")
+    <div class="tab-content">
+        <div class="tab-pane active" id="home">
+            <div>
+                @Html.Partial("_GridConvidados")
+            </div>
+        </div>
+        <div class="tab-pane a1" id="profile">
+            @Html.Partial("_GridConvidados")
+        </div>
+        <div class="tab-pane" id="messages">
+            @Html.Partial("_GridConvidados")
+        </div>
+        <div class="tab-pane" id="settings">
+            @Html.Partial("_GridConvidados")
+        </div>
     </div>
-    <div class="tab-pane" id="profile">...</div>
-    <div class="tab-pane" id="messages">...</div>
-    <div class="tab-pane" id="settings">...</div>
-</div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Novo Convidado</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="cadConvidado" data-bind="with: novoConvidado">
+                        <div class="form-group">
+                            <label>Categoria</label>
+                            <select data-bind="options: $root.tiposConvidado , optionsText:'Text', optionsValue:'Value', value: TipoConvidado" class="form-control"></select>
+                        </div>
+                        <div class="form-group">
+                            <label>Nome Completo</label>
+                            <input type="text" data-bind="value: Nome" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Endereço</label>
+                            <input type="text" data-bind="value: Endereco" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Número de Exibíveis</label>
+                            <input type="text" data-bind="value: NumeroConvites" class="form-control" />
+                        </div>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" data-bind="click: $root.adicionar" data-dismiss="modal">Salvar</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-<script src="~/Scripts/jquery-2.1.1.min.js"></script>
-<script src="~/Scripts/bootstrap.min.js"></script>
-<script src="~/Scripts/knockout-2.0.0.js"></script>
-<script src="~/Scripts/knockout.mapping-latest.js"></script>
-
 <script>
-    $(document).ready(function() {
-        $('#myTab a').click(function(e) {
-            e.preventDefault();
-            $(this).tab('show');
-        });
-
-        $.getJSON("/Convidados/Teste", function (data) {
-            var viewModel = {
-                convidadosDB: ko.observableArray(data)
-            };
-        });
+    document.addEventListener("DOMContentLoaded", function (event) {
 
     });
-
 </script>
+
+<script src="~/Scripts/ViewModels/ConvidadoViewModel.js"></script>
+
+
 
 

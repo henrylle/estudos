@@ -8,53 +8,27 @@
 </button>
 <div class="convidados">
     <ul class="nav nav-tabs" role="tablist" id="myTab">
-        <li id="familia-noivo" class="active"><a href="#home" role="tab" data-toggle="tab">Familia do Noivo</a></li>
-        <li id="familia-noiva" data-bind="click: $root.limpaTabela"><a href="#profile" role="tab" data-toggle="tab">Familia da Noiva</a></li>
-        <li id="amigos-noivo"><a href="#messages" role="tab" data-toggle="tab">Amigos do Noivo</a></li>
-        <li id="amigos-noiva"><a href="#settings" role="tab" data-toggle="tab">Amigas da Noiva</a></li>
+        <li id="familia-noivo" data-bind="click: function(){ $root.preencheTable('1') }" class="active"><a href="#home" role="tab" data-toggle="tab">Familia do Noivo</a></li>
+        <li id="familia-noiva" data-bind="click: function(){ $root.preencheTable('0') }"><a href="#profile" role="tab" data-toggle="tab">Familia da Noiva</a></li>
+        <li id="amigos-noivo" data-bind="click: function(){ $root.preencheTable('3') }"><a href="#messages" role="tab" data-toggle="tab">Amigos do Noivo</a></li>
+        <li id="amigos-noiva" data-bind="click: function(){ $root.preencheTable('2') }"><a href="#settings" role="tab" data-toggle="tab">Amigos da Noiva</a></li>
     </ul>
 
     <div class="tab-content">
         <div class="tab-pane active" id="home">
             <div>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <td>Nome</td>
-                            <td>Endereço</td>
-                            <td>Quantidade de Exibíveis</td>
-                        </tr>
-                    </thead>
-                    <tbody data-bind="foreach: Convidados">
-                        <tr>
-                            <td data-bind="text: Nome"></td>
-                            <td data-bind="text: Endereco"></td>
-                            <td data-bind="text: NumeroConvites"></td>
-                        </tr>
-                    </tbody>
-                </table>
+                @Html.Partial("_GridConvidados")
             </div>
         </div>
         <div class="tab-pane a1" id="profile">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <td>Nome</td>
-                        <td>Endereço</td>
-                        <td>Quantidade de Exibíveis</td>
-                    </tr>
-                </thead>
-                <tbody data-bind="foreach: Convidados">
-                    <tr>
-                        <td data-bind="text: Nome"></td>
-                        <td data-bind="text: Endereco"></td>
-                        <td data-bind="text: NumeroConvites"></td>
-                    </tr>
-                </tbody>
-            </table>
+            @Html.Partial("_GridConvidados")
         </div>
-        <div class="tab-pane" id="messages">...</div>
-        <div class="tab-pane" id="settings">...</div>
+        <div class="tab-pane" id="messages">
+            @Html.Partial("_GridConvidados")
+        </div>
+        <div class="tab-pane" id="settings">
+            @Html.Partial("_GridConvidados")
+        </div>
     </div>
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -96,9 +70,6 @@
 <script>
     document.addEventListener("DOMContentLoaded", function (event) {
 
-        document.getElementById("familia-noiva").addEventListener("click", function () {
-            this.Convidados = [];
-        });
     });
 </script>
 

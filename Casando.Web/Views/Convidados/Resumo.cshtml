@@ -1,10 +1,10 @@
-﻿@model IDictionary<string, int>
+﻿@model Casando.Web.ViewModels.Convidado.ResumoConvitesVM
 
 @{
     ViewBag.Title = "Resumo";
 }
 
-
+<h3>Resumo de Convites</h3><hr/>
 <div>
     <table class="table table-striped">
         <thead>
@@ -14,13 +14,18 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var convidado in Model)
+            @foreach (var convidado in Model.Resumo)
             {
                 <tr>
                     <td>@convidado.Key</td>
                     <td>@convidado.Value</td>
                 </tr>
             }
+            
+            <tr style="height: 90px; font-size: 16pt">
+                <td style="vertical-align: middle">TOTAL</td>
+                <td style="vertical-align: middle">@Model.Total</td>
+            </tr>
         </tbody>
     </table>
 </div>
