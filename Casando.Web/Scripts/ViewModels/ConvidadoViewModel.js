@@ -1,8 +1,7 @@
 ﻿var convidadoViewModel = (function ConvidadoViewModel() {
 
     var self = this;
-    var tiposConvidado = ko.observableArray(['Familiar do Noivo', 'Familiar da Noiva', 'Amigo do Noivo', 'Amigo da Noiva']);
-
+    self.tiposConvidado = ko.observableArray([{ Text: 'Familiar da Noiva', Value: 0 }, { Text: 'Familiar do Noivo', Value: 1 }, { Text: 'Amigo da Noiva', Value: 2 }, { Text: 'Amigo do Noivo', Value: 3 }, ]);
     self.Convidados = ko.observableArray([]);
     self.novoConvidado = ko.observable();
 
@@ -40,6 +39,12 @@
         });
     }
 
+    this.limpaTabela = function() {
+        self.Convidados = ko.observableArray([]);
+        var element = $('#profile')[0];
+        ko.cleanNode(element);
+    }
+
     this.preparaConvidado = function() {
         self.novoConvidado(new Convidado({}));
     }
@@ -64,4 +69,5 @@ $(function () {
     ko.applyBindings(viewModel, $(".convidados")[0]);
     viewModel.preencheTable();
     viewModel.preparaConvidado();
+    
 });

@@ -2,9 +2,9 @@
 {
     public enum TipoConvidado
     {
-        FamiliarNoiva,
-        FamiliarNoivo,
-        AmigosNoiva,
-        AmigosNoivo
+        FamiliarNoiva = 0,
+        FamiliarNoivo = 1,
+        AmigosNoiva = 2,
+        AmigosNoivo = 3
     }
 }
