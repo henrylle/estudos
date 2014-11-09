@@ -1,6 +1,8 @@
 ﻿<table class="table table-striped">
     <thead>
         <tr>
+            <td></td>
+            <td>Id</td>
             <td>Nome</td>
             <td>Endereço</td>
             <td>Quantidade de Exibíveis</td>
@@ -8,9 +10,12 @@
     </thead>
     <tbody data-bind="foreach: Convidados">
         <tr>
+            <td><button class="btn-sm btn-info" data-toggle="modal" data-target="#editModal" data-bind="click: function(){ $root.editar(this.Id()) }">Editar</button></td>
+            <td data-bind="text: Id"></td>
             <td data-bind="text: Nome"></td>
             <td data-bind="text: Endereco"></td>
-            <td data-bind="text: NumeroConvites"></td>
+            <td data-bind="text: NumeroDeExibiveis"></td>
         </tr>
     </tbody>
 </table>
+

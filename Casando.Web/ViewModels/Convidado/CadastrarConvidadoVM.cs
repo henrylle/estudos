@@ -7,7 +7,7 @@ namespace Casando.Web.ViewModels.Convidado
 {
     public class CadastrarConvidadoVM : Core.Modelos.Convidado
     {
-        public IEnumerable<SelectListItem> NumeroDeExibiveis
+        public IEnumerable<SelectListItem> PreencheNumeroDeExibiveis
         {
             get
             {

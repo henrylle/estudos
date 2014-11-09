@@ -11,7 +11,7 @@ namespace Casando.Data.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(CasandoContext context)
@@ -25,7 +25,7 @@ namespace Casando.Data.Migrations
                     Endereco = "Rua Renato Braga, 200, Vicente Pinzon",
                     Nome = "Vitor",
                     Sobrenome = "Benevides Botelho",
-                    NumeroConvites = 2,
+                    NumeroDeExibiveis = 2,
                     TipoConvidado = TipoConvidado.FamiliarNoivo
                 },
                 new Convidado
@@ -33,7 +33,7 @@ namespace Casando.Data.Migrations
                     Endereco = "Rua Solon Onofre, 10, Papicú",
                     Nome = "Eduardo",
                     Sobrenome = "Benevides Couto",
-                    NumeroConvites = 3,
+                    NumeroDeExibiveis = 3,
                     TipoConvidado = TipoConvidado.FamiliarNoivo
                 },
                 new Convidado
@@ -41,7 +41,7 @@ namespace Casando.Data.Migrations
                     Endereco = "Rua Renato Braga, 200, Vicente Pinzon",
                     Nome = "Mauro",
                     Sobrenome = "Barbosa Botelho Neto",
-                    NumeroConvites = 2,
+                    NumeroDeExibiveis = 2,
                     TipoConvidado = TipoConvidado.FamiliarNoivo
                 },
                 new Convidado
@@ -49,7 +49,7 @@ namespace Casando.Data.Migrations
                     Endereco = "Rua Coronel Antonio, Limoeiro",
                     Nome = "Maximiliano",
                     Sobrenome = "Rodrigues Coura",
-                    NumeroConvites = 4,
+                    NumeroDeExibiveis = 4,
                     TipoConvidado = TipoConvidado.FamiliarNoiva
                 },
                 new Convidado
@@ -57,15 +57,15 @@ namespace Casando.Data.Migrations
                     Endereco = "SEM ENDEREÇO",
                     Nome = "Miguel",
                     Sobrenome = "Rodrigues Coura",
-                    NumeroConvites = 2,
-                    TipoConvidado = TipoConvidado.FamiliarNoivo
+                    NumeroDeExibiveis = 2,
+                    TipoConvidado = TipoConvidado.FamiliarNoiva
                 },
                 new Convidado
                 {
                     Endereco = "SEM ENDEREÇO",
                     Nome = "Felipe",
                     Sobrenome = "Macêdo Rangel",
-                    NumeroConvites = 2,
+                    NumeroDeExibiveis = 2,
                     TipoConvidado = TipoConvidado.AmigosNoivo
                 }
             };

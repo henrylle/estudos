@@ -8,10 +8,17 @@ namespace Casando.Web.ViewModels.Convidado
     public class ResumoConvitesVM
     {
         public IDictionary<string, int> Resumo { get; set; }
+        public List<int> NumeroDeConvitesPorGrupo { get; set; }
 
-        public int Total
+        public int TotalExibiveis
         {
             get { return Resumo.Values.Sum(); }
         }
+
+        public int TotalConvites
+        {
+            get { return NumeroDeConvitesPorGrupo.Sum(); }
+        }
+
     }
 }

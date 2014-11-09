@@ -10,5 +10,6 @@ namespace Casando.Core.Interfaces
     {
         IDictionary<string, int> Totais();
         IQueryable<Convidado> TodosPorTipo(TipoConvidado tipo);
+        IQueryable<int> TotalDeConvites();
     }
 }

@@ -14,5 +14,6 @@ namespace Casando.Core.Interfaces
         void Exclui(int id);
         void SaveChanges();
         IEnumerable<T> Todos();
+        T Buscar(int id);
     }
 }

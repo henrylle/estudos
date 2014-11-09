@@ -21,23 +21,32 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Local|Any CPU = Local|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{6A99D893-840A-448B-890E-1D210A99EE5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6A99D893-840A-448B-890E-1D210A99EE5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A99D893-840A-448B-890E-1D210A99EE5D}.Local|Any CPU.ActiveCfg = Local|Any CPU
+		{6A99D893-840A-448B-890E-1D210A99EE5D}.Local|Any CPU.Build.0 = Local|Any CPU
 		{6A99D893-840A-448B-890E-1D210A99EE5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A99D893-840A-448B-890E-1D210A99EE5D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F7F1DA96-DA41-4F92-B1D4-D7979E2FCBF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F7F1DA96-DA41-4F92-B1D4-D7979E2FCBF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7F1DA96-DA41-4F92-B1D4-D7979E2FCBF5}.Local|Any CPU.ActiveCfg = Local|Any CPU
+		{F7F1DA96-DA41-4F92-B1D4-D7979E2FCBF5}.Local|Any CPU.Build.0 = Local|Any CPU
 		{F7F1DA96-DA41-4F92-B1D4-D7979E2FCBF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7F1DA96-DA41-4F92-B1D4-D7979E2FCBF5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2AA51FE3-F9BF-40BA-B3A6-2BDEE76F82FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2AA51FE3-F9BF-40BA-B3A6-2BDEE76F82FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AA51FE3-F9BF-40BA-B3A6-2BDEE76F82FE}.Local|Any CPU.ActiveCfg = Local|Any CPU
+		{2AA51FE3-F9BF-40BA-B3A6-2BDEE76F82FE}.Local|Any CPU.Build.0 = Local|Any CPU
 		{2AA51FE3-F9BF-40BA-B3A6-2BDEE76F82FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AA51FE3-F9BF-40BA-B3A6-2BDEE76F82FE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5AC45476-871C-43F5-8C60-7EF9ADA6023A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5AC45476-871C-43F5-8C60-7EF9ADA6023A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AC45476-871C-43F5-8C60-7EF9ADA6023A}.Local|Any CPU.ActiveCfg = Local|Any CPU
+		{5AC45476-871C-43F5-8C60-7EF9ADA6023A}.Local|Any CPU.Build.0 = Local|Any CPU
 		{5AC45476-871C-43F5-8C60-7EF9ADA6023A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AC45476-871C-43F5-8C60-7EF9ADA6023A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection

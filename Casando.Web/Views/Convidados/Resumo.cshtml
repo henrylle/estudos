@@ -11,21 +11,25 @@
             <tr>
                 <td>Descrição</td>
                 <td>Quantidade de Exibíveis</td>
+                <td>Quantidade de Convites</td>
             </tr>
         </thead>
         <tbody>
-            @foreach (var convidado in Model.Resumo)
+            @for (var i = 0; i < Model.Resumo.Count; i++)
             {
                 <tr>
-                    <td>@convidado.Key</td>
-                    <td>@convidado.Value</td>
+                    <td>@Model.Resumo.ElementAt(i).Key</td>
+                    <td>@Model.Resumo.ElementAt(i).Value</td>
+                    <td>@Model.NumeroDeConvitesPorGrupo[i]</td>
                 </tr>
             }
             
             <tr style="height: 90px; font-size: 16pt">
                 <td style="vertical-align: middle">TOTAL</td>
-                <td style="vertical-align: middle">@Model.Total</td>
+                <td style="vertical-align: middle">@Model.TotalExibiveis</td>
+                <td colspan="2" style="vertical-align: middle">@Model.TotalConvites</td>
             </tr>
+
         </tbody>
     </table>
 </div>

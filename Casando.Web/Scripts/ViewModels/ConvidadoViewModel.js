@@ -15,7 +15,6 @@
             accept: 'application/json',
             statusCode: {
                 200: function (data) {
-
                     data.map(function (convidado) {
                         self.Convidados.push(new Convidado(convidado));
                     });
@@ -41,6 +40,35 @@
         });
     };
 
+    this.editar = function(id) {
+        $.ajax({
+            url: '/Convidados/Editar/' + id,
+            type: 'GET',
+            statusCode: {
+                200: function (data) {
+                    self.novoConvidado(data);
+                }
+            }
+        });
+    };
+
+    this.editarSalvar = function (dado) {
+
+        $.ajax({
+            url: '/Convidados/Editar',
+            type: 'POST',
+            dataType: 'json',
+            data: ko.toJSON(dado),
+            contentType: 'application/json',
+            accept: 'application/json',
+            statusCode: {
+                200: function () {
+                    self.preencheTable(dado.TipoConvidado);
+                }
+            }
+        });
+    };
+
     this.preparaConvidado = function() {
         self.novoConvidado(new Convidado({}));
     };
@@ -51,11 +79,13 @@
 
     /*Declaração do Objeto*/
     function Convidado(data) {
+        this.Id = ko.observable(data.Id);
         this.Nome = ko.observable(data.Nome);
         this.Sobrenome = ko.observable(data.Sobrenome);
         this.Endereco = ko.observable(data.Endereco);
-        this.NumeroConvites = ko.observable(data.NumeroConvites);
+        this.NumeroDeExibiveis = ko.observable(data.NumeroDeExibiveis);
         this.TipoConvidado = ko.observable(data.TipoConvidado);
+        this.ComConvite = ko.observable(data.ComConvite);
     };
 });
 

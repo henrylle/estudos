@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,6 +37,8 @@ namespace Casando.Data
         public void Altera(T obj)
         {
             unitOfWork.Context.Set<T>().Attach(obj);
+            unitOfWork.Context.Entry(obj).State = EntityState.Modified;
+            SaveChanges();
         }
 
         public void Exclui(T obj)
@@ -58,6 +61,16 @@ namespace Casando.Data
         public IEnumerable<T> Todos()
         {
             return unitOfWork.Context.Set<T>();
+        }
+
+        public T Buscar(int id)
+        {
+            var entidade = unitOfWork.Context.Set<T>().Find(id);
+
+            if(entidade == null)
+                throw new Exception("O registro não existe.");
+
+            return entidade;
         }
     }
 }

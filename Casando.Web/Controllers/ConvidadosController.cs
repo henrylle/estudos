@@ -46,11 +46,48 @@ namespace Casando.Web.Controllers
         }
 
         [HttpGet]
+        public ActionResult Editar(int id)
+        {
+            return Json(convidadosRepositorio.Buscar(id), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult Editar(Convidado convidado)
+        {
+            if (ModelState.IsValid)
+            {
+                convidadosRepositorio.Altera(convidado);
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+
+            return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+        }
+
+        [HttpGet]
+        public ActionResult Excluir(int id)
+        {
+            try
+            {
+                convidadosRepositorio.Exclui(id);
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, ex.Message);
+
+                throw;
+            }
+        }
+
+
+
+        [HttpGet]
         public ActionResult Resumo()
         {
             var resumoConvitesVM = new ResumoConvitesVM
             {
-                Resumo = convidadosRepositorio.Totais()
+                Resumo = convidadosRepositorio.Totais(),
+                NumeroDeConvitesPorGrupo = convidadosRepositorio.TotalDeConvites().ToList()
             };
             return View(resumoConvitesVM);
         }
@@ -72,8 +109,6 @@ namespace Casando.Web.Controllers
         public ActionResult PorCategoria(string obj)
         {
             var tipo = getTipoConvidado(obj);
-            var todosPorTipo = convidadosRepositorio.TodosPorTipo(tipo);
-
             return Json(convidadosRepositorio.TodosPorTipo(tipo), JsonRequestBehavior.AllowGet);
         }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Casando.Core.Interfaces;
@@ -21,7 +22,14 @@ namespace Casando.Data.Repositorios
         {
             return unitOfWork.Context.Convidados
                         .GroupBy(c => c.TipoConvidado)
-                        .ToDictionary(c => c.Key.ToString(), c => c.Count());
+                        .ToDictionary(c => c.Key.ToString(), c => c.Sum(x => x.NumeroDeExibiveis));
+        }
+
+        public IQueryable<int> TotalDeConvites()
+        {
+            return unitOfWork.Context.Convidados
+                .GroupBy(c => c.TipoConvidado)
+                .Select(c => c.Count(x => x.ComConvite));
         }
         
         public IQueryable<Convidado> TodosPorTipo(Core.Enums.TipoConvidado tipo)

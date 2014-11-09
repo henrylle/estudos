@@ -26,7 +26,7 @@
 
     <div class="form-group">
         <label>Número de Exibíveis</label>
-        @Html.DropDownListFor(m => m.NumeroConvites, Model.NumeroDeExibiveis, "Selecione", new { @class = "form-control", style = "width:120px" })
+        @Html.DropDownListFor(m => m.NumeroDeExibiveis, Model.PreencheNumeroDeExibiveis, "Selecione", new { @class = "form-control", style = "width:120px" })
     </div>
 
     <button type="submit" class="btn btn-info">Cadastrar</button>
