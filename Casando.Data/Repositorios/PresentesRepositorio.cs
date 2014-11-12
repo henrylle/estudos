@@ -19,5 +19,10 @@ namespace Casando.Data.Repositorios
         {
             return unitOfWork.Context.Presentes.GroupBy(p => p.Nome).SelectMany(x => x.Select(p => p.Cotacoes));
         }
+
+        public IQueryable<Presente> BuscaPorNome(string nome)
+        {
+            return unitOfWork.Context.Presentes.Where(p => p.Nome == nome);
+        }
     }
 }

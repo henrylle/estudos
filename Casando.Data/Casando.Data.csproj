@@ -41,6 +41,9 @@
     <Reference Include="AutoMapper.Net4">
       <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
+    <Reference Include="DocumentFormat.OpenXml">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -68,6 +71,10 @@
     <Compile Include="Migrations\201411081058075_Adicionando_Campo_ComConvite_Tabela_Convidado.Designer.cs">
       <DependentUpon>201411081058075_Adicionando_Campo_ComConvite_Tabela_Convidado.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201411120230102_Ajuste_Tabela_CotacaoPresente.cs" />
+    <Compile Include="Migrations\201411120230102_Ajuste_Tabela_CotacaoPresente.Designer.cs">
+      <DependentUpon>201411120230102_Ajuste_Tabela_CotacaoPresente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorio.cs" />
@@ -92,6 +99,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201411081058075_Adicionando_Campo_ComConvite_Tabela_Convidado.resx">
       <DependentUpon>201411081058075_Adicionando_Campo_ComConvite_Tabela_Convidado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411120230102_Ajuste_Tabela_CotacaoPresente.resx">
+      <DependentUpon>201411120230102_Ajuste_Tabela_CotacaoPresente.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

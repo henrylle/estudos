@@ -151,6 +151,7 @@
     <Compile Include="ViewModels\Convidado\CadastrarConvidadoVM.cs" />
     <Compile Include="ViewModels\Convidado\ResumoConvitesVM.cs" />
     <Compile Include="ViewModels\Presente\CadastrarPresenteVM.cs" />
+    <Compile Include="ViewModels\Presente\NovaCotacaoVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -165,6 +166,7 @@
     <Content Include="Views\Presentes\Cadastrar.cshtml" />
     <Content Include="Views\Presentes\Index.cshtml" />
     <Content Include="Views\Shared\_GridConvidados.cshtml" />
+    <Content Include="Views\Presentes\NovaCotacao.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

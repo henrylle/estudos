@@ -1,6 +1,9 @@
 ﻿@model Dictionary<string, IEnumerable<Casando.Core.Modelos.CotacaoPresente>>
 
 <h3>Presentes</h3>
+<a href="@Url.Action("Cadastrar","Presentes")" class="btn btn-primary btn-lg" style="margin-bottom: 40px; margin-top: 20px">
+    Novo Presente
+</a>
 <div>
     <table class="table table-striped">
         <thead>
@@ -14,20 +17,28 @@
             @foreach (var p in Model)
             {
                 if(!p.Value.Any()){ continue; }
+                
                 var count = p.Value.Count();
+                var presente = p.Value.FirstOrDefault();
                 
                 <tr>
-                    <td rowspan="@count"><a class="btn-info" href="@Url.Action("Editar", "Presentes")">Editar</a></td>
+                    <td rowspan="@count">
+                        <a class="btn btn-info" href="@Url.Action("Editar", "Presentes")"><i class="glyphicon glyphicon-pencil"></i> Editar</a>
+                        <a class="btn btn-info" href="@Url.Action("NovaCotacao", "Presentes", new {id = presente.PresenteId})"><i class="glyphicon glyphicon-plus"></i></a>
+                    </td>
+                    
                     <td rowspan="@count">@p.Key</td>
-                    <td>@string.Format("Site: {0} - Preço R$: {1}", 
-                        p.Value.FirstOrDefault().SiteNome, p.Value.FirstOrDefault().Valor)</td>
+                    <td>
+                        @string.Format("Site: {0} - Preço R$: {1}",
+                        presente.SiteNome, presente.Valor) <a href="@presente.Url"><i class="glyphicon glyphicon-zoom-in"></i> </a> <a href="@Url.Action("ExcluirCotacao", "Presentes", new { id = presente.Id })"><i class="glyphicon glyphicon-trash"></i> </a>
+                    </td>
                 </tr>
                 if (count > 1)
                 {
                     foreach (var cot in p.Value.Skip(1))
                     {
                         <tr>
-                            <td>@string.Format("Site: {0} - Preço R$: {1}", cot.SiteNome, cot.Valor) <a href="@cot.Url">Ver |</a> <a href="@cot.Url">Excluir</a></td>
+                            <td>@string.Format("Site: {0} - Preço R$: {1}", cot.SiteNome, cot.Valor) <a href="@cot.Url"><i class="glyphicon glyphicon-zoom-in"></i></a> <a href="@Url.Action("ExcluirCotacao", "Presentes", new { id = cot.Id })"><i class="glyphicon glyphicon-trash"></i> </a></td>
                         </tr>
                     }
                 }

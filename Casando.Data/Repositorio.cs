@@ -51,6 +51,7 @@ namespace Casando.Data
             var context = unitOfWork.Context;
             var entidade = context.Set<T>().Find(id);
             context.Set<T>().Remove(entidade);
+            SaveChanges();
         }
 
         public void SaveChanges()

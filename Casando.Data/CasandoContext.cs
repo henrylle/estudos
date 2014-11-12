@@ -17,6 +17,9 @@ namespace Casando.Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Entity<CotacaoPresente>()
+                .HasRequired(x => x.Presente);
+                
             
             base.OnModelCreating(modelBuilder);
         }
