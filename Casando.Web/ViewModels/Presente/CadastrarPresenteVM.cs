@@ -9,7 +9,7 @@ namespace Casando.Web.ViewModels.Presente
     public class CadastrarPresenteVM
     {
         [Display(Name = "Presente")]
-        public string PresenteNome { get; set; }
+        public string Nome { get; set; }
         [Display(Name = "Nome do Site")]
         public string SiteNome { get; set; }
         [Display(Name = "URL")]

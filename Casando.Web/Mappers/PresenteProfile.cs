@@ -13,7 +13,7 @@ namespace Casando.Web.Mappers
         protected override void Configure()
         {
             Mapper.CreateMap<CadastrarPresenteVM, Presente>()
-                .ForMember(p => p.Nome, expression => expression.MapFrom(vm => vm.PresenteNome))
+                .ForMember(p => p.Nome, expression => expression.MapFrom(vm => vm.Nome))
                 .ForMember(p => p.Cotacoes, expression => expression.ResolveUsing(cotacao));
 
             Mapper.CreateMap<NovaCotacaoVM, CotacaoPresente>()

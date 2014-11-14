@@ -134,6 +134,7 @@
     <Content Include="Scripts\knockout.mapping-latest.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\ViewModels\ConvidadoViewModel.js" />
+    <Content Include="Scripts\ViewModels\Presente.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +168,7 @@
     <Content Include="Views\Presentes\Index.cshtml" />
     <Content Include="Views\Shared\_GridConvidados.cshtml" />
     <Content Include="Views\Presentes\NovaCotacao.cshtml" />
+    <Content Include="Views\Shared\_GridPresentes.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

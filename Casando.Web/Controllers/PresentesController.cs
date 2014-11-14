@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using AutoMapper;
 using Casando.Core.Interfaces;
@@ -37,8 +38,8 @@ namespace Casando.Web.Controllers
         {
             var presente = Mapper.Map<CadastrarPresenteVM, Presente>(model);
             presenteRepositorio.Inclui(presente);
-            
-            return View();
+
+            return RedirectToAction("Index", "Presente");
         }
 
         [HttpGet]
@@ -75,6 +76,37 @@ namespace Casando.Web.Controllers
             cotacaoPresenteRepositorio.Exclui(id);
 
             return RedirectToAction("Index", "Presentes");
+        }
+
+        public ActionResult Novo(CadastrarPresenteVM model)
+        {
+            try
+            {
+                var presente = Mapper.Map<CadastrarPresenteVM, Presente>(model);
+                presenteRepositorio.Inclui(presente);
+
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            catch (Exception exception)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, exception.Message);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult Todos()
+        {
+            var aa = cotacaoPresenteRepositorio.PresentesComCotacoes();
+
+            return Json( aa.Select(
+                    x => new
+                    {
+                        Nome = x.Key,
+                        Cotacoes = x.Value
+                    }
+                ), JsonRequestBehavior.AllowGet);
+
+            return Json(cotacaoPresenteRepositorio.PresentesComCotacoes(), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
