@@ -1,94 +1,103 @@
-﻿@model Dictionary<string, IEnumerable<Casando.Core.Modelos.CotacaoPresente>>
+﻿@model Casando.Web.ViewModels.Presente.PresentesIndexVM
 
 <h3>Presentes</h3>
 <a href="#" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="margin-bottom: 40px; margin-top: 20px">
     Novo Presente
 </a>
-<div class="presentes">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                    <td></td>
+<div class="panel panel-default">
+    <div class="panel-heading">Quantia Necessária</div>
+    <div class="panel-body">
+        São necessários <strong> @Model.TotalEmDinheiro.ToString("C0") </strong> para comprar todos os produtos que o casal deseja.
+    </div>
+
+
+    <div class="presentes">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <td style="width: 104px"></td>
                     <td>Nome</td>
                     <td>Cotacao</td>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var p in Model)
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model.PresentesComCotacoes)
             {
                 if (!p.Value.Any()) { continue; }
 
                 var count = p.Value.Count();
                 var presente = p.Value.FirstOrDefault();
 
-                <tr>
-                    <td rowspan="@count">
-                        <a class="btn btn-info" href="@Url.Action("Editar", "Presentes")"><i class="glyphicon glyphicon-pencil"></i></a>
-                        <a class="btn btn-info" href="@Url.Action("NovaCotacao", "Presentes", new {id = presente.PresenteId})"><i class="glyphicon glyphicon-plus"></i></a>
-                    </td>
+            <tr>
+                <td rowspan="@count">
+                    <a class="btn btn-info" href="@Url.Action("Editar", "Presentes")"><i class="glyphicon glyphicon-pencil"></i></a>
+                    <a class="btn btn-info" href="@Url.Action("NovaCotacao", "Presentes", new {id = presente.PresenteId})"><i class="glyphicon glyphicon-plus"></i></a>
+                </td>
 
-                    <td rowspan="@count">@p.Key</td>
-                    <td>
-                        @string.Format("Site: {0} - Preço R$: {1}",
+                <td rowspan="@count">@p.Key</td>
+                <td>
+                    @string.Format("Site: {0} - Preço R$: {1}",
                             presente.SiteNome, presente.Valor) <a href="@presente.Url"><i class="glyphicon glyphicon-zoom-in"></i> </a> <a href="@Url.Action("ExcluirCotacao", "Presentes", new { id = presente.Id })"><i class="glyphicon glyphicon-trash"></i> </a>
-                    </td>
-                </tr>
+                </td>
+            </tr>
                 if (count > 1)
                 {
                     foreach (var cot in p.Value.Skip(1))
                     {
-                        <tr>
-                            <td>@string.Format("Site: {0} - Preço R$: {1}", cot.SiteNome, cot.Valor) <a href="@cot.Url"><i class="glyphicon glyphicon-zoom-in"></i></a> <a href="@Url.Action("ExcluirCotacao", "Presentes", new { id = cot.Id })"><i class="glyphicon glyphicon-trash"></i> </a></td>
-                        </tr>
+            <tr>
+                <td>@string.Format("Site: {0} - Preço R$: {1}", cot.SiteNome, cot.Valor) <a href="@cot.Url"><i class="glyphicon glyphicon-zoom-in"></i></a> <a href="@Url.Action("ExcluirCotacao", "Presentes", new { id = cot.Id })"><i class="glyphicon glyphicon-trash"></i> </a></td>
+            </tr>
                     }
                 }
             }
 
-        </tbody>
-    </table>
-    
-    @*<div>
-        <table>
-            @Html.Partial("_GridPresentes")
+            </tbody>
         </table>
-    </div>*@
 
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Novo Presente</h4>
-                </div>
-                <div class="modal-body">
-                    <div data-bind="with: novoPresente">
-                        <div class="form-group">
-                            <label>Presente</label>
-                            <input type="text" data-bind="value: Nome" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label>Site</label>
-                            <input type="text" data-bind="value: SiteNome" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label>Url</label>
-                            <input type="text" data-bind="value: Url" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label>Valor</label>
-                            <input type="text" data-bind="value: Valor" class="form-control" />
-                        </div>
+        @*<div>
+                <table>
+                    @Html.Partial("_GridPresentes")
+                </table>
+            </div>*@
 
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary" data-bind="click: $root.adicionar" data-dismiss="modal">Salvar</button>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Novo Presente</h4>
                     </div>
-                </div>
-                <div class="modal-footer">
+                    <div class="modal-body">
+                        <div data-bind="with: novoPresente">
+                            <div class="form-group">
+                                <label>Presente</label>
+                                <input type="text" data-bind="value: Nome" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>Site</label>
+                                <input type="text" data-bind="value: SiteNome" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>Url</label>
+                                <input type="text" data-bind="value: Url" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>Valor</label>
+                                <input type="text" data-bind="value: Valor" class="form-control" />
+                            </div>
 
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary" data-bind="click: $root.adicionar" data-dismiss="modal">Salvar</button>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
 
 <script src="~/Scripts/ViewModels/Presente.js"></script>

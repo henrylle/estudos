@@ -2,6 +2,7 @@
     var self = this;
     self.Presentes = ko.observableArray([]);
     self.novoPresente = ko.observable();
+    self.novaCotacao = ko.observable();
 
     self.Presente = function Presente(data) {
         data = data || {};
@@ -56,9 +57,45 @@
         });
     };
 
+    this.editar = function(id) {
+        $.ajax({
+            url: '/Presentes/NovaCotacao/' + id,
+            type: 'GET',
+            statusCode: {
+                200: function (data) {
+                    self.novoPresente(data);
+                }
+            }
+        });
+    };
+
+    this.adicionarCotacao = function(data) {
+        $.ajax({
+            url: 'Presentes/NovaCotacaoj',
+            type: 'POST',
+            dataType: 'json',
+            data: ko.toJSON(data),
+            contentType: 'application/json',
+            statusCode: {
+                200: function() {
+                    
+                }
+            }
+        });
+    };
+
     this.preparaPresente = function() {
         self.novoPresente({
             Nome: ko.observable(),
+            SiteNome: ko.observable(),
+            Url: ko.observable(),
+            Valor: ko.observable()
+        });
+    };
+
+    this.preparaCotacao = function() {
+        self.novaCotacao({
+            Id: ko.observable(),
             SiteNome: ko.observable(),
             Url: ko.observable(),
             Valor: ko.observable()
@@ -69,6 +106,7 @@
 $(function() {
     var viewModel = new presenteViewModel();
     ko.applyBindings(viewModel, $(".presentes")[0]);
-    //viewModel.preencheTable();
+    //ewModel.preencheTable();
     viewModel.preparaPresente();
+    viewModel.preparaCotacao();
 });

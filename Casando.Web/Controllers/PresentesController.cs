@@ -23,8 +23,14 @@ namespace Casando.Web.Controllers
         // GET: Presentes
         public ActionResult Index()
         {
-            var a = cotacaoPresenteRepositorio.PresentesComCotacoes();
-            return View(cotacaoPresenteRepositorio.PresentesComCotacoes());
+            var model = new PresentesIndexVM
+            {
+                PresentesComCotacoes = cotacaoPresenteRepositorio.PresentesComCotacoes(),
+                TotalEmDinheiro = presenteRepositorio.TotalEmDinheiro()
+            };
+
+            //return View(cotacaoPresenteRepositorio.PresentesComCotacoes());
+            return View(model);
         }
 
         [HttpGet]
@@ -69,7 +75,7 @@ namespace Casando.Web.Controllers
 
             return View(model);
         }
-
+        
         [HttpGet]
         public ActionResult ExcluirCotacao(int id)
         {

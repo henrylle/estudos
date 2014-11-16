@@ -8,5 +8,6 @@ namespace Casando.Core.Interfaces
     {
         IQueryable<IEnumerable<CotacaoPresente>> TodosAgrupados();
         IQueryable<Presente> BuscaPorNome(string nome);
+        decimal TotalEmDinheiro();
     }
 }

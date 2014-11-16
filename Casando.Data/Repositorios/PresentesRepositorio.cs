@@ -24,5 +24,10 @@ namespace Casando.Data.Repositorios
         {
             return unitOfWork.Context.Presentes.Where(p => p.Nome == nome);
         }
+
+        public decimal TotalEmDinheiro()
+        {
+            return unitOfWork.Context.Presentes.Sum(p => p.Cotacoes.Select(c => c.Valor).Min());
+        }
     }
 }

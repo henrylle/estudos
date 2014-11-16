@@ -153,6 +153,7 @@
     <Compile Include="ViewModels\Convidado\ResumoConvitesVM.cs" />
     <Compile Include="ViewModels\Presente\CadastrarPresenteVM.cs" />
     <Compile Include="ViewModels\Presente\NovaCotacaoVM.cs" />
+    <Compile Include="ViewModels\Presente\PresentesIndexVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
