@@ -34,7 +34,7 @@ namespace Casando.Data.Repositorios
         
         public IQueryable<Convidado> TodosPorTipo(Core.Enums.TipoConvidado tipo)
         {
-            return unitOfWork.Context.Convidados.Where(c => c.TipoConvidado == tipo);
+            return unitOfWork.Context.Convidados.Where(c => c.TipoConvidado == tipo).OrderBy(c => c.Nome);
         }
     }
 }

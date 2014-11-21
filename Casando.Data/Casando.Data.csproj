@@ -75,6 +75,10 @@
     <Compile Include="Migrations\201411120230102_Ajuste_Tabela_CotacaoPresente.Designer.cs">
       <DependentUpon>201411120230102_Ajuste_Tabela_CotacaoPresente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201411161709350_N_Para_N_Convidado_E_Presente.cs" />
+    <Compile Include="Migrations\201411161709350_N_Para_N_Convidado_E_Presente.Designer.cs">
+      <DependentUpon>201411161709350_N_Para_N_Convidado_E_Presente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorio.cs" />
@@ -102,6 +106,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201411120230102_Ajuste_Tabela_CotacaoPresente.resx">
       <DependentUpon>201411120230102_Ajuste_Tabela_CotacaoPresente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411161709350_N_Para_N_Convidado_E_Presente.resx">
+      <DependentUpon>201411161709350_N_Para_N_Convidado_E_Presente.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

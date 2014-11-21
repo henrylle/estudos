@@ -1,0 +1,44 @@
+﻿@model Dictionary<string, IEnumerable<Casando.Core.Modelos.CotacaoPresente>>
+
+<div>
+    <h3>Lista de Presentes</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td></td>
+                <td>Nome</td>
+                <td>Cotacao</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model)
+            {
+                if (!p.Value.Any()) { continue; }
+
+                var count = p.Value.Count();
+                var presente = p.Value.FirstOrDefault();
+
+                <tr>
+                    <td rowspan="@count">
+                        <a class="btn btn-info" href="@Url.Action("NovaCotacao", "Presentes", new {id = presente.PresenteId})"><i class="glyphicon glyphicon-usd"></i></a>
+                    </td>
+                    <td rowspan="@count">@p.Key</td>
+                    <td>
+                        @string.Format("Site: {0} - Preço R$: {1}",
+                            presente.SiteNome, presente.Valor) <a href="@presente.Url"><i class="glyphicon glyphicon-zoom-in"></i> </a> <a href="@Url.Action("ExcluirCotacao", "Presentes", new { id = presente.Id })"><i class="glyphicon glyphicon-trash"></i> </a>
+                    </td>
+                </tr>
+                if (count > 1)
+                {
+                    foreach (var cot in p.Value.Skip(1))
+                    {
+                        <tr>
+                            <td>@string.Format("Site: {0} - Preço R$: {1}", cot.SiteNome, cot.Valor) <a href="@cot.Url"><i class="glyphicon glyphicon-zoom-in"></i></a> <a href="@Url.Action("ExcluirCotacao", "Presentes", new { id = cot.Id })"><i class="glyphicon glyphicon-trash"></i> </a></td>
+                        </tr>
+                    }
+                }
+            }
+
+        </tbody>
+    </table>
+</div>

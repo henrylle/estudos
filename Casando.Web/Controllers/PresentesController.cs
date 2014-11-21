@@ -33,6 +33,11 @@ namespace Casando.Web.Controllers
             return View(model);
         }
 
+        public ActionResult ConvidadoIndex()
+        {
+            return View(cotacaoPresenteRepositorio.PresentesComCotacoes());
+        }
+
         [HttpGet]
         public ActionResult Cadastrar()
         {
@@ -84,6 +89,7 @@ namespace Casando.Web.Controllers
             return RedirectToAction("Index", "Presentes");
         }
 
+        [HttpPost]
         public ActionResult Novo(CadastrarPresenteVM model)
         {
             try
@@ -97,6 +103,12 @@ namespace Casando.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, exception.Message);
             }
+        }
+
+        [HttpGet]
+        public ActionResult AssociarConvidado(int presenteId)
+        {
+            return View(presenteRepositorio.Buscar(presenteId));
         }
 
         [HttpGet]

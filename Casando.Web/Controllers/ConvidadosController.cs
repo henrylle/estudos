@@ -79,8 +79,6 @@ namespace Casando.Web.Controllers
             }
         }
 
-
-
         [HttpGet]
         public ActionResult Resumo()
         {
@@ -109,7 +107,7 @@ namespace Casando.Web.Controllers
         public ActionResult PorCategoria(string obj)
         {
             var tipo = getTipoConvidado(obj);
-            return Json(convidadosRepositorio.TodosPorTipo(tipo), JsonRequestBehavior.AllowGet);
+            return Json(convidadosRepositorio.TodosPorTipo(tipo).ToList(), JsonRequestBehavior.AllowGet);
         }
 
         private TipoConvidado getTipoConvidado(string tipo)

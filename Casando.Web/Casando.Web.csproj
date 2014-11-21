@@ -170,6 +170,8 @@
     <Content Include="Views\Shared\_GridConvidados.cshtml" />
     <Content Include="Views\Presentes\NovaCotacao.cshtml" />
     <Content Include="Views\Shared\_GridPresentes.cshtml" />
+    <Content Include="Views\Presentes\ConvidadoIndex.cshtml" />
+    <Content Include="Views\Presentes\AssociarConvidado.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
